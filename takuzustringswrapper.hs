@@ -12,9 +12,9 @@ getStrings a (x@(b:c:ys):xs)
  | otherwise = getStrings (a-1) ([['0'] ++ x] ++ xs) ++ getStrings (a-1) ([['1'] ++ x] ++ xs)
 getStrings a (x:xs) = getStrings (a-1) ([['0'] ++ x] ++ xs) ++ getStrings (a-1) ([['1'] ++ x] ++ xs)
 
+
 filterStrings :: [String] -> [String]
-filterStrings [] = []
-filterStrings (x:xs) = if isAllowedTakuzuString x then filterStrings xs ++ [x] else filterStrings xs
+filterStrings xs = filter (\x -> isAllowedTakuzuString x) xs
 
 isAllowedTakuzuString :: String -> Bool
 isAllowedTakuzuString xs = if x == y then True else False where
