@@ -5,10 +5,17 @@ lastDigits  :: Integer -> Int -> [Integer]
 -}
 
 lastDigits :: Integer -> Int -> [Integer]
-lastDigits x n = getLastDigits (getNumber x) n
+lastDigits x n = getLastDigits (getNumber x 0 n) n
 
-getNumber :: Integer -> Integer
-getNumber x = sum( [ x^y | y <- [ 0 .. x ] ] )
+{-getNumber :: Integer -> Integer -> Int -> Integer
+getNumber x y n 
+  | y<x = (x^y) `mod` (10^(n+1)) + getNumber x (y+1) n
+  | y==x = (x^y) `mod` (10^(n+1))-}
+
+getNumber :: Integer -> Integer -> Integer
+
+{-getNumber :: Integer -> Int -> Integer
+getNumber x n = sum( [ (x^y) `mod` (10^n) | y <- [ 0 .. x ] ] )-}
 
 getLastDigit :: Integer -> Integer
 getLastDigit x = x `mod` 10
