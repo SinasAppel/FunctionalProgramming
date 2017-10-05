@@ -13,10 +13,18 @@ mergeLists :: [Integer] -> [Integer] -> [Integer]
   
 mergeLists xs [] = xs
 mergeLists [] xs = xs
+{-mergeLists (x:xs) (y:ys)
+  | x<y = [x] ++ mergeLists (dropWhile (<=x) (x:xs)) (dropWhile (<=x) (y:ys))
+  | y>x = [y] ++ mergeLists (dropWhile (<=y) (x:xs)) (dropWhile (<=y) (y:ys))
+  | otherwise = [x] ++ mergeLists (dropWhile (<=x) (x:xs)) (dropWhile (<=x) (y:ys))-}
+mergeLists (1:1:xs) (y:ys) = mergeLists xs (y:ys)
+mergeLists (x:xs) (1:1:ys)
+  | x < 1 = x : mergeLists xs (1:1:ys)
+  | otherwise = 1 : mergeLists (x:xs) ys
 mergeLists (x:xs) (y:ys)
- | x == y = x : mergeLists xs ys
- | x < y = x : mergeLists xs (y:ys)
- | otherwise = y : mergeLists (x:xs) ys
+  | x == y = x : mergeLists xs ys
+  | x < y = x : mergeLists xs (y:ys)
+  | otherwise = y : mergeLists (x:xs) ys
 
 fib :: [Integer]
 fib = (0:1: zipWith (+) fib (tail fib))
