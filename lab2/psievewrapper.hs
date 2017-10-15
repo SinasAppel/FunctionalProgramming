@@ -15,8 +15,7 @@ inc x = map (x +)
 merge :: [[Integer]] -> [Integer]
 merge [] = []
 merge ([]:xss) = merge xss
---merge ((x:xs):xss) = x : mergeLists xs (merge xss)
-merge xs = foldr mergeLists [] xs
+merge ((x:xs):xss) = x : mergeLists xs (merge xss)
 
 mergeLists :: [Integer] -> [Integer] -> [Integer]
 mergeLists xs [] = xs
